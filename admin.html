@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Newsletter Sender</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 10px 20px;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
+    .message {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .success {
+      background-color: #e0f9e4;
+      color: #27ae60;
+      border: 1px solid #2ecc71;
+    }
+    .error {
+      background-color: #fdecea;
+      color: #e74c3c;
+      border: 1px solid #e74c3c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Send Newsletter</h2>
+  <form id="newsletter-form">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" rows="6" required></textarea>
+
+    <button type="submit">Send Newsletter</button>
+    <div id="response" class="message" style="display:none;"></div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('newsletter-form');
+  const responseDiv = document.getElementById('response');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!subject || !message) {
+      showResponse('Please fill in all fields.', true);
+      return;
+    }
+
+    try {
+      const res = await fetch('http://localhost:6500/mail/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ subject, message })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        showResponse(data.message, false);
+        form.reset();
+      } else {
+        showResponse(data.message || 'Failed to send newsletter.', true);
+      }
+    } catch (err) {
+      showResponse('Network error. Could not send newsletter.', true);
+    }
+  });
+
+  function showResponse(msg, isError) {
+    responseDiv.textContent = msg;
+    responseDiv.className = `message ${isError ? 'error' : 'success'}`;
+    responseDiv.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
