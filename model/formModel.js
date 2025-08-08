@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
     trim: true
   },
   phone: {
-    type: [String], // for multiple numbers separated by comma
+    type: [String], 
     required: true
   },
   whatsappPhone: {
@@ -31,7 +31,7 @@ const orderSchema = new mongoose.Schema({
   },
   package: {
     type: String,
-    enum: ["regular", "silver", "family"],
+    
     required: true
   },
   availability: {
@@ -43,10 +43,43 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  status: {
+    type: String,
+    enum: ["pending", "processing", "delivered", "cancelled"],
+    default: "pending"
+  },
+   processingSteps: [{
+    step: {
+      type: Number,
+      required: true
+    },
+    code: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
     type: Date,
     default: Date.now
   }
 });
 
-module.exports =  orderSchema
+
+orderSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
+module.exports = orderSchema;
