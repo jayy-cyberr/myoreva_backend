@@ -227,7 +227,7 @@ const emailTemplates = {
 
 
 const subscribe = async (req, res) => {
-  console.log("Request Body:", req.body);
+
 
   const { email, name } = req.body || {};
 
@@ -388,7 +388,7 @@ const sendNewsletter = async (req, res) => {
           });
           successCount++;
         } catch (error) {
-          console.error(`Failed to send to ${subscriber.email}:`, error);
+        
           failedEmails.push(subscriber.email);
         }
       });

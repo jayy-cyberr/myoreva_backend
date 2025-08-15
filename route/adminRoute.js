@@ -9,14 +9,21 @@ const {
   exportToPDF,
   updateOrderPackageAndPrice,
   addProcessingStep,
-  getProcessingSteps
+  getProcessingSteps,
+  getPackageRevenue
 } = require("../controller/adminController");
+
+
+const { authenticateToken } = require("../middlewares/authMiddleware");
 
 const adminRoute = express.Router()
 
+adminRoute.use(authenticateToken);
 
 adminRoute.get("/orders", getAllOrders);
 
+
+adminRoute.get('/package-revenue', getPackageRevenue);
 
 adminRoute.get("/stats", getOrderStats);
 
