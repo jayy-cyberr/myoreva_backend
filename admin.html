@@ -12,13 +12,19 @@
             padding: 0;
             box-sizing: border-box;
         }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg,
+    rgba(107, 70, 193, 0.25),
+    rgba(213, 63, 140, 0.25),
+    rgba(237, 100, 166, 0.25),
+    rgba(237, 137, 54, 0.25),
+    rgba(236, 201, 75, 0.25)
+  );
+  min-height: 100vh;
+  color: #333;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #169946;
-            min-height: 100vh;
-            color: #333;
-        }
 
         .container {
             max-width: 1400px;
@@ -26,7 +32,7 @@
             padding: 20px;
         }
 
-        /* Navigation Tabs */
+        
         .navigation-tabs {
             display: flex;
             justify-content: center;
@@ -37,7 +43,7 @@
             padding: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             gap: 20px;
-        }
+        }   
 
         .nav-tab {
             display: flex;
@@ -73,7 +79,7 @@
             font-size: 1.2rem;
         }
 
-        /* Section containers */
+        
         .section-container {
             display: none;
         }
@@ -127,6 +133,7 @@
             overflow: hidden;
         }
 
+         
         .stat-card::before {
             content: '';
             position: absolute;
@@ -645,7 +652,7 @@
             background: white;
         }
 
-        /* Footer Navigation */
+        
         .footer-nav {
             display: flex;
             justify-content: center;
@@ -669,7 +676,7 @@
             justify-content: center;
         }
 
-        /* Add this CSS to your existing styles */
+        
         .status-cell {
             text-align: center;
         }
@@ -760,6 +767,53 @@
             opacity: 0.8;
         }
 
+        
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.users-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #073829;
+    position: sticky;
+    top: 0;
+}
+
+.users-table tr:hover {
+    background: #f8fafc;
+}
+
+
+.status-active {
+    background: rgba(22, 153, 70, 0.1);
+    color: #169946;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-inactive {
+    background: #e2e8f0;
+    color: #4a5568;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
         @media (max-width: 768px) {
             .navigation-tabs {
                 flex-direction: column;
@@ -806,11 +860,801 @@
                 bottom: 10px;
             }
         }
+        /* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Extra Large Screens (1400px and above) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+        padding: 25px;
+    }
+    
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+    
+    .stat-card {
+        padding: 30px;
+    }
+    
+    .stat-card h3 {
+        font-size: 2.5rem;
+    }
+    
+    .nav-tab {
+        min-width: 220px;
+        padding: 18px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Large Screens (1200px - 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .container {
+        max-width: 1200px;
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    .nav-tab {
+        min-width: 200px;
+    }
+    
+    .footer-nav {
+        width: 95%;
+    }
+   
+}
+
+/* Medium Screens (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        max-width: 992px;
+        padding: 20px;
+        margin-bottom: 5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .navigation-tabs {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .nav-tab {
+        min-width: 180px;
+        flex: 1;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .export-buttons {
+        justify-content: center;
+    }
+    
+    .newsletter-form > div {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    .filters {
+        gap: 12px;
+    }
+    
+    .filter-group {
+        min-width: 150px;
+    }
+  
+
+}
+
+/* Small-Medium Screens (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        max-width: 768px;
+        padding: 15px;
+        margin-bottom: 4rem;
+    }
+      
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card h3 {
+        font-size: 1.8rem;
+    }
+    
+    .navigation-tabs {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .nav-tab {
+        min-width: auto;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+    
+    .export-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .filter-group input,
+    .filter-group select {
+        width: 100%;
+    }
+    
+    .orders-table,
+    .subscribers-table,
+    .users-table {
+        font-size: 0.9rem;
+    }
+    
+    .orders-table th,
+    .orders-table td,
+    .subscribers-table th,
+    .subscribers-table td,
+    .users-table th,
+    .users-table td {
+        padding: 12px 8px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .newsletter-form > div {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    .template-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        bottom: 10px;
+        gap: 10px;
+    }
+    
+    .footer-nav .btn {
+        flex: 1;
+        min-width: 120px;
+        font-size: 0.85rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .order-detail {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .processing-codes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+/* Mobile Screens (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        padding: 10px;
+         margin-bottom: 3.5rem;
+    }
+     
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .stat-card h3 {
+        font-size: 2rem;
+    }
+    
+    .navigation-tabs {
+        flex-direction: column;
+        gap: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .nav-tab {
+        width: 100%;
+        min-width: auto;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .export-buttons {
+        flex-direction: row;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .export-buttons .btn {
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    /* Table Responsiveness */
+    .orders-table,
+    .subscribers-table,
+    .users-table {
+        font-size: 0.8rem;
+        min-width: 100%;
+    }
+    
+    .orders-table th,
+    .orders-table td,
+    .subscribers-table th,
+    .subscribers-table td,
+    .users-table th,
+    .users-table td {
+        padding: 8px 4px;
+        word-break: break-word;
+    }
+    
+    /* Hide less important columns on mobile */
+    .orders-table th:nth-child(4),
+    .orders-table td:nth-child(4) {
+        display: none; /* Hide Address column */
+    }
+    
+    .orders-table th:nth-child(5),
+    .orders-table td:nth-child(5) {
+        display: none; /* Hide Date column */
+    }
+    
+    .users-table th:nth-child(4),
+    .users-table td:nth-child(4),
+    .users-table th:nth-child(5),
+    .users-table td:nth-child(5) {
+        display: none; /* Hide Created At and Last Login columns */
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        margin: 2px;
+    }
+    
+    .status-badge {
+        font-size: 0.65rem;
+        padding: 3px 8px;
+    }
+    
+    .processing-steps {
+        font-size: 0.6rem;
+        padding: 1px 6px;
+    }
+    
+    .newsletter-form {
+        padding: 20px 15px;
+    }
+    
+    .newsletter-form > div {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    
+    .template-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .template-option {
+        padding: 12px;
+    }
+    
+    .footer-nav {
+        flex-direction: column;
+        width: 100%;
+        bottom: 5px;
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    .footer-nav .btn {
+        width: 100%;
+        min-width: auto;
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 5% auto;
+        max-height: 90vh;
+    }
+    
+    .modal-header {
+        padding: 15px 20px;
+    }
+    
+    .modal-body {
+        padding: 20px 15px;
+        max-height: 65vh;
+    }
+    
+    .order-detail {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .processing-codes-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .code-option {
+        padding: 10px;
+    }
+    
+    .chart-content {
+        height: 300px;
+        padding: 15px;
+    }
+    
+    
+    .stats-filter-section {
+        padding: 15px;
+    }
+    
+    .stats-filter-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stats-filter-controls > div {
+        width: 100%;
+    }
+    
+    #packageStatsGrid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .moves {
+        margin-bottom: 4rem;
+    }
+}
+
+
+.device-restriction-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.device-restriction-content {
+    text-align: center;
+    color: white;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.device-restriction-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    animation: pulse 2s infinite;
+}
+
+.device-restriction-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.device-restriction-message {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.device-restriction-suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.device-restriction-suggestions li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.device-restriction-suggestions li i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: #ffd700;
+}
+
+.device-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+}
+
+
+@media (max-width: 575px) {
+    .device-restriction-overlay {
+        display: flex !important;
+    }
+    
+ 
+    .container,
+    body > *:not(.device-restriction-overlay) {
+        display: none !important;
+    }
+    
+    
+    body {
+        overflow: hidden;
+    }
+}
+
+
+@media (max-height: 500px) and (max-width: 767px) {
+    .device-restriction-overlay {
+        display: flex !important;
+    }
+    
+    .container,
+    body > *:not(.device-restriction-overlay) {
+        display: none !important;
+    }
+    
+    body {
+        overflow: hidden;
+    }
+    
+    .device-restriction-title {
+        font-size: 1.3rem;
+    }
+    
+    .device-restriction-message {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 767px) and (orientation: landscape) {
+    .header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .footer-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+        padding: 8px;
+    }
+    
+    .footer-nav .btn {
+        flex: 1;
+        min-width: 80px;
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+    
+    .modal-content {
+        width: 90%;
+        max-height: 85vh;
+    }
+    
+    .chart-content {
+        height: 200px;
+    }
+}
+
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .stat-card,
+    .orders-section,
+    .newsletter-section {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+    
+    .btn {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-content {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media print {
+    .navigation-tabs,
+    .footer-nav,
+    .export-buttons,
+    .btn {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .header,
+    .stat-card,
+    .orders-section,
+    .newsletter-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .orders-table,
+    .subscribers-table,
+    .users-table {
+        font-size: 12px;
+    }
+    
+    .orders-table th,
+    .orders-table td,
+    .subscribers-table th,
+    .subscribers-table td,
+    .users-table th,
+    .users-table td {
+        padding: 8px 4px;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        background: white !important;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+    .btn,
+    .nav-tab,
+    input,
+    select,
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+
+    .btn:focus,
+    .nav-tab:focus,
+    input:focus,
+    select:focus {
+        outline: 3px solid #169946;
+        outline-offset: 2px;
+    }
+    
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    
+    .orders-table,
+    .subscribers-table,
+    .users-table {
+        font-size: 14px;
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+ 
+    .modal-content {
+        background: #1a202c;
+        color: #e2e8f0;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading i {
+        animation: none;
+    }
+}
+
+@container (max-width: 600px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
     </style>
 </head>
 <body>
+   
+<div class="device-restriction-overlay">
+    <div class="device-restriction-content">
+        <div class="device-restriction-icon">
+            <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h1 class="device-restriction-title">
+            Screen Too Small
+        </h1>
+        <p class="device-restriction-message">
+            This admin dashboard requires a larger screen for optimal experience and functionality.
+        </p>
+        <ul class="device-restriction-suggestions">
+            <li>
+                <i class="fas fa-laptop"></i>
+                Use a laptop or desktop computer
+            </li>
+            <li>
+                <i class="fas fa-tablet-alt"></i>
+                Switch to a tablet in landscape mode
+            </li>
+            <li>
+                <i class="fas fa-mobile-alt"></i>
+                Rotate your phone to landscape
+            </li>
+            <li>
+                <i class="fas fa-expand-arrows-alt"></i>
+                Use a device with larger screen
+            </li>
+        </ul>
+        <div class="device-info">
+            <i class="fas fa-info-circle"></i>
+            Minimum recommended width: 576px<br>
+            Your current screen: <span id="currentScreenWidth"></span>px
+        </div>
+    </div>
+</div>
+
+
     <div class="container">
-        <!-- Header -->
+   
         <div class="header">
             <h1><i class="fas fa-tachometer-alt"></i> MyOreva Admin Dashboard</h1>
             <div class="user-info">
@@ -827,9 +1671,59 @@
             </div>
         </div>
 
-        <!-- HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHDDDDDDDDDDDDDDDDDDDDDDDD -->
-        <!-- Dashboard Section -->
+      
         <div class="section-container active" id="dashboard-section">
+        
+            <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                    <h3 style="margin: 0; color: #073829; font-size: 1.2rem;">
+                        <i class="fas fa-filter"></i> Statistics Filter
+                    </h3>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                     
+                        <div class="filter-group" style="margin-bottom: 0;">
+                            <label style="margin-bottom: 5px;">Date Range</label>
+                            <select id="statsDateFilter" onchange="applyStatsFilter()" style="min-width: 150px; padding: 8px 12px;">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="last7days">Last 7 Days</option>
+                                <option value="last14days">Last 14 Days</option>
+                                <option value="last28days">Last 28 Days</option>
+                                <option value="last30days">Last 30 Days</option>
+                                <option value="thisweek">This Week</option>
+                                <option value="thismonth">This Month</option>
+                                <option value="lastmonth">Last Month</option>
+                                <option value="custom">Custom Range</option>
+                            </select>
+                        </div>
+                        
+                      
+                        <div id="customDateField" style="display: none;">
+                            <div class="filter-group" style="margin-bottom: 0;">
+                                <label style="margin-bottom: 5px;">Select Date</label>
+                                <input type="date" id="statsCustomDate" onchange="applyStatsFilter()">
+                            </div>
+                        </div>
+                        
+                       
+                        <button class="btn btn-primary" onclick="applyStatsFilter()" style="height: fit-content; align-self: end;">
+                            <i class="fas fa-refresh"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+          
+                <div id="currentFilter" style="margin-top: 15px; padding: 10px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #169946; display: none;">
+                    <small style="color: #073829; font-weight: 600;">
+                        <i class="fas fa-info-circle"></i> 
+                        Showing data for: <span id="filterDisplay">All Time</span>
+                    </small>
+                </div>
+            </div>
+
+         
             <div class="stats-grid">
                 <div class="stat-card total">
                     <i class="fas fa-shopping-cart icon"></i>
@@ -854,7 +1748,7 @@
             </div>
         </div>
 
-        <!-- Orders Section -->
+   
         <div class="section-container moves" id="orders-section">
             <div class="orders-section">
                 <div class="section-header">
@@ -862,7 +1756,7 @@
                     <span id="orderCount">0 orders</span>
                 </div>
 
-                <!-- Filters -->
+              
                 <div class="filters">
                     <div class="filter-group">
                         <label>Search</label>
@@ -900,13 +1794,13 @@
                     </div>
                 </div>
 
-                <!-- Loading -->
+        
                 <div class="loading" id="loading">
                     <i class="fas fa-spinner"></i>
                     <p>Loading orders...</p>
                 </div>
 
-                <!-- Orders Table -->
+        
                 <div style="overflow-x: auto;">
                     <table class="orders-table" id="ordersTable">
                         <thead>
@@ -936,11 +1830,46 @@
             </div>
         </div>
 
-        <!-- Package Analytics Section -->
+    
         <div class="section-container moves" id="analytics-section">
+          
+            <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; margin-bottom: 30px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                    <h3 style="margin: 0; color: #073829; font-size: 1.2rem;">
+                        <i class="fas fa-box"></i> Package Performance Analytics
+                    </h3>
+                    
+                    <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+                        <!-- Refresh Button -->
+                        <button class="btn btn-primary" onclick="loadPackageAnalytics()" style="height: fit-content; align-self: end;">
+                            <i class="fas fa-refresh"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+           
+                <div id="packageStatsGrid" class="stats-grid">
+                
+                </div>
+
+             
+                <div id="packageStatsLoading" style="display: none; text-align: center; padding: 40px; color: #718096;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <p>Loading package analytics...</p>
+                </div>
+
+                <!-- No Data State -->
+                <div id="packageStatsNoData" style="display: none; text-align: center; padding: 40px; color: #718096;">
+                    <i class="fas fa-box-open" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                    <h3>No package data found</h3>
+                    <p>Try refreshing or check back later.</p>
+                </div>
+            </div>
+
+            <!-- Existing Chart Container -->
             <div class="chart-container">
                 <div class="section-header">
-                    <h2><i class="fas fa-chart-pie"></i> Package Analytics</h2>
+                    <h2><i class="fas fa-chart-pie"></i> Package Distribution Chart</h2>
                 </div>
                 <div class="chart-content">
                     <canvas id="packageChart"></canvas>
@@ -987,7 +1916,7 @@
                             <div class="form-group">
                                 <label>Email Template</label>
                                 <div class="template-selector" id="templateSelector">
-                                    <!-- Templates will be loaded here -->
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1031,6 +1960,81 @@
             </div>
         </div>
 
+        <!-- User Management Section -->
+<div class="section-container moves" id="users-section">
+    <div class="orders-section">
+        <div class="section-header">
+            <h2><i class="fas fa-users"></i> User Management</h2>
+            <button class="btn btn-primary" onclick="openCreateUserModal()">
+                <i class="fas fa-user-plus"></i> Create New User
+            </button>
+        </div>
+
+        <!-- Users Table -->
+        <div style="overflow-x: auto;">
+            <table class="orders-table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Last Login</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="usersLoading">
+            <i class="fas fa-spinner"></i>
+            <p>Loading users...</p>
+        </div>
+
+        <!-- No Data -->
+        <div class="no-data" id="usersNoData" style="display: none;">
+            <i class="fas fa-inbox"></i>
+            <h3>No users found</h3>
+            <p>Try creating a new user or check back later.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Create User Modal -->
+<div id="createUserModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-user-plus"></i> Create New User</h2>
+            <span class="close" onclick="closeCreateUserModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="newUserUsername" placeholder="Enter username" style="width: 100%; padding: 12px;">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="newUserPassword" placeholder="Enter password" style="width: 100%; padding: 12px;">
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select id="newUserRole" style="width: 100%; padding: 12px;">
+                    <option value="admin">Admin</option>
+                    <option value="moderator">Moderator</option>
+                </select>
+            </div>
+            <div style="margin-top: 20px; text-align: right;">
+                <button class="btn btn-secondary" onclick="closeCreateUserModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="createUser()" style="margin-left: 10px;">
+                    <i class="fas fa-user-plus"></i> Create User
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
         <!-- Footer Navigation -->
         <div class="footer-nav">
             <button class="btn btn-primary active" onclick="showSection('dashboard-section')">
@@ -1045,9 +2049,11 @@
             <button class="btn btn-primary" onclick="showSection('newsletter-section')">
                 <i class="fas fa-paper-plane"></i> Newsletter
             </button>
+            <button class="btn btn-primary" onclick="showSection('users-section')">
+    <i class="fas fa-users"></i> Users
+</button>
         </div>
 
-        <!-- Order Details Modal -->
         <div id="orderModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1059,7 +2065,7 @@
             </div>
         </div>
 
-        <!-- Status Update Modal -->
+  
         <div id="statusModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1085,7 +2091,7 @@
             </div>
         </div>
 
-        <!-- Newsletter Preview Modal -->
+       
         <div id="previewModal" class="modal preview-modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1098,7 +2104,7 @@
             </div>
         </div>
 
-        <!-- Processing Steps Modal -->
+     
         <div id="processingStepsModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1114,7 +2120,7 @@
                     <div style="margin: 20px 0; border-top: 1px solid #e2e8f0; padding-top: 20px;">
                         <h4>Add New Step:</h4>
                         <div class="processing-codes-grid" id="processingCodes">
-                            <!-- Will be populated by JavaScript -->
+                         
                         </div>
                     </div>
                     
@@ -1128,7 +2134,7 @@
             </div>
         </div>
 
-        <!-- Package/Price Update Modal -->
+       
         <div id="packagePriceModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1158,6 +2164,283 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script>
+       function updateScreenInfo() {
+    const screenWidthElement = document.getElementById('currentScreenWidth');
+    if (screenWidthElement) {
+        screenWidthElement.textContent = window.innerWidth;
+    }
+}
+
+function checkScreenSize() {
+    const overlay = document.querySelector('.device-restriction-overlay');
+    const container = document.querySelector('.container');
+    
+    if (window.innerWidth <= 575) {
+        if (overlay) {
+            overlay.style.display = 'flex';
+        }
+        if (container) {
+            container.style.display = 'none';
+        }
+        document.body.style.overflow = 'hidden';
+    } else {
+        if (overlay) {
+            overlay.style.display = 'none';
+        }
+        if (container) {
+            container.style.display = 'block';
+        }
+        document.body.style.overflow = 'auto';
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateScreenInfo();
+    checkScreenSize();
+});
+
+
+window.addEventListener('resize', function() {
+    updateScreenInfo();
+    checkScreenSize();
+});
+
+
+window.addEventListener('orientationchange', function() {
+    setTimeout(function() {
+        updateScreenInfo();
+        checkScreenSize();
+    }, 100); 
+});
+let currentUser = null;
+
+async function verifyToken() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '/login.html'; 
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:6500/api/auth/verify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        const data = await response.json();
+        if (data.success) {
+            currentUser = data.data.user;
+            document.querySelector('.user-info span').innerHTML = `<i class="fas fa-user-circle"></i> ${currentUser.username} (${currentUser.role})`;
+            updateUIBasedOnRole();
+        } else {
+            localStorage.removeItem('token');
+            window.location.href = '/login.html'; 
+        }
+    } catch (error) {
+        console.error('Error verifying token:', error);
+        localStorage.removeItem('token');
+        window.location.href = '/login.html';
+    }
+}
+
+
+  function updateUIBasedOnRole() {
+    const usersNavButton = document.querySelector('.footer-nav .btn[onclick="showSection(\'users-section\')"]');
+    if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'system_admin')) {
+      usersNavButton.style.display = 'block';
+    } else {
+      usersNavButton.style.display = 'none';
+      if (document.getElementById('users-section').classList.contains('active')) {
+        showSection('dashboard-section');
+      }
+    }
+  }
+
+
+async function loadUsers() {
+    const loading = document.getElementById('usersLoading');
+    const table = document.getElementById('usersTable');
+    const noData = document.getElementById('usersNoData');
+
+    loading.style.display = 'block';
+    table.style.display = 'none';
+    noData.style.display = 'none';
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:6500/api/auth/users', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        const data = await response.json();
+
+        if (data.success && data.data.length > 0) {
+            displayUsers(data.data);
+            table.style.display = 'table';
+        } else {
+            noData.style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Error loading users:', error);
+        noData.style.display = 'block';
+    } finally {
+        loading.style.display = 'none';
+    }
+}
+
+function displayUsers(users) {
+    const tbody = document.getElementById('usersTableBody');
+    tbody.innerHTML = '';
+
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.role.toUpperCase()}</td>
+            <td><span class="status-badge status-${user.isActive ? 'active' : 'inactive'}">${user.isActive ? 'Active' : 'Inactive'}</span></td>
+            <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+            <td>${user.lastLogin ? new Date(user.lastLogin).toLocaleDateString() : 'Never'}</td>
+            <td>
+                <button class="btn btn-primary" onclick="openUpdateUserModal('${user._id}', '${user.username}', '${user.role}', ${user.isActive})" style="margin-right: 5px;">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-danger" onclick="deleteUser('${user._id}')">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function openCreateUserModal() {
+    document.getElementById('newUserUsername').value = '';
+    document.getElementById('newUserPassword').value = '';
+    document.getElementById('newUserRole').value = 'admin';
+    document.getElementById('createUserModal').style.display = 'block';
+    stopAutoRefresh();
+}
+
+function closeCreateUserModal() {
+    document.getElementById('createUserModal').style.display = 'none';
+    startAutoRefresh();
+}
+
+async function createUser() {
+    const username = document.getElementById('newUserUsername').value.trim();
+    const password = document.getElementById('newUserPassword').value;
+    const role = document.getElementById('newUserRole').value;
+
+    if (!username || !password) {
+        alert('Please enter both username and password');
+        return;
+    }
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:6500/api/auth/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ username, password, role }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            closeCreateUserModal();
+            loadUsers();
+            alert('User created successfully!');
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error creating user:', error);
+        alert('Error creating user');
+    }
+}
+
+
+function openUpdateUserModal(userId, username, role, isActive) {
+    
+    document.getElementById('newUserUsername').value = username;
+    document.getElementById('newUserPassword').value = ''; 
+    document.getElementById('newUserRole').value = role;
+    document.getElementById('createUserModal').querySelector('h2').innerHTML = '<i class="fas fa-user-edit"></i> Update User';
+    document.getElementById('createUserModal').querySelector('.btn-primary').innerHTML = '<i class="fas fa-save"></i> Update User';
+    document.getElementById('createUserModal').querySelector('.btn-primary').onclick = () => updateUser(userId);
+    document.getElementById('createUserModal').style.display = 'block';
+    stopAutoRefresh();
+}
+
+async function updateUser(userId) {
+    const username = document.getElementById('newUserUsername').value.trim();
+    const password = document.getElementById('newUserPassword').value;
+    const role = document.getElementById('newUserRole').value;
+
+    if (!username) {
+        alert('Please enter a username');
+        return;
+    }
+
+    const payload = { username, role };
+    if (password) payload.password = password;
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:6500/api/auth/users/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            closeCreateUserModal();
+            loadUsers();
+            alert('User updated successfully!');
+        } else {
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error updating user:', error);
+        alert('Error updating user');
+    }
+}
+
+
+async function deleteUser(userId) {
+    if (!confirm('Are you sure you want to delete this user?')) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:6500/api/auth/users/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        if (response.ok) {
+            loadUsers();
+            alert('User deleted successfully!');
+        } else {
+            const data = await response.json();
+            alert(`Error: ${data.message}`);
+        }
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        alert('Error deleting user');
+    }
+}
         let autoRefreshInterval = null;
 
         function refreshDashboardData() {
@@ -1177,7 +2460,7 @@
                 if (!isModalOpen) {
                     refreshDashboardData();
                 }
-            }, 300000);
+            }, 60000);
         }
 
         function stopAutoRefresh() {
@@ -1194,62 +2477,57 @@
         let selectedTemplate = 'modern';
         let newsletterImage = null;
 
-        // Function to show specific section and update button states
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section-container').forEach(section => {
-                section.classList.remove('active');
-            });
+function showSection(sectionId) {
+    document.querySelectorAll('.section-container').forEach(section => {
+        section.classList.remove('active');
+    });
 
-            // Deactivate all footer buttons
-            document.querySelectorAll('.footer-nav .btn').forEach(button => {
-                button.classList.remove('active');
-            });
+    document.querySelectorAll('.footer-nav .btn').forEach(button => {
+        button.classList.remove('active');
+    });
 
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
+    document.getElementById(sectionId).classList.add('active');
+    const activeButton = document.querySelector(`.footer-nav .btn[onclick="showSection('${sectionId}')"]`);
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
 
-            // Activate corresponding button
-            const activeButton = document.querySelector(`.footer-nav .btn[onclick="showSection('${sectionId}')"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
+    if (sectionId === 'orders-section') {
+        loadOrders(currentPage);
+    } else if (sectionId === 'analytics-section') {
+        loadStats();
+        loadPackageAnalytics();
+    } else if (sectionId === 'newsletter-section') {
+        loadSubscriberCount();
+        loadNewsletterTemplates();
+    } else if (sectionId === 'users-section') {
+        loadUsers();
+    }
+}
 
-            // Load data for specific sections if needed
-            if (sectionId === 'orders-section') {
-                loadOrders(currentPage);
-            } else if (sectionId === 'analytics-section') {
-                loadStats(); // Ensure chart data is updated
-            } else if (sectionId === 'newsletter-section') {
-                loadSubscriberCount();
-                loadNewsletterTemplates();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            quill = new Quill('#newsletterMessageEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                placeholder: 'Enter your newsletter content here...',
-                formats: [
-                    'bold', 'italic', 'underline', 'list', 'bullet', 'link'
-                ]
-            });
-
-            // Initialize with dashboard section visible
-            showSection('dashboard-section');
-            loadStats();
-            initializeChart();
-            startAutoRefresh();
-        });
-
+       document.addEventListener('DOMContentLoaded', function() {
+    verifyToken(); 
+    quill = new Quill('#newsletterMessageEditor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                ['link'],
+                ['clean']
+            ]
+        },
+        placeholder: 'Enter your newsletter content here...',
+        formats: [
+            'bold', 'italic', 'underline', 'list', 'bullet', 'link'
+        ]
+    });
+    updateFilterDisplay('all', '');
+    showSection('dashboard-section');
+    loadStats();
+    initializeChart();
+    startAutoRefresh();
+});
         async function loadStats() {
             try {
                 const response = await fetch('http://localhost:6500/api/admin/stats');
@@ -1297,7 +2575,12 @@
                     endDate: document.getElementById('endDate').value
                 });
                 
-                const response = await fetch(`http://localhost:6500/api/admin/orders?${params}`);
+                const response = await fetch(`http://localhost:6500/api/admin/orders?${params}`, {
+                    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+}
+                });
                 const data = await response.json();
                 
                 if (data.data && data.data.length > 0) {
@@ -1408,7 +2691,13 @@
 
         async function viewOrderDetails(orderId) {
             try {
-                const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}`);
+                const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
                 const data = await response.json();
                 
                 if (data.data) {
@@ -1488,7 +2777,8 @@
                 const response = await fetch(`http://localhost:6500/api/admin/orders/${currentOrderId}/status`, {
                     method: 'PUT',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                     body: JSON.stringify({ status: newStatus })
                 });
@@ -1531,9 +2821,14 @@
             if (!confirm('Are you sure you want to delete this order?')) return;
             
             try {
-                const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}`, {
-                    method: 'DELETE'
-                });
+               const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
                 
                 if (response.ok) {
                     loadOrders(currentPage);
@@ -1548,6 +2843,245 @@
             }
         }
 
+
+       
+let packageAnalyticsData = [];
+
+
+function applyPackageAnalyticsFilter() {
+    const dateFilter = document.getElementById('packageAnalyticsDateFilter').value;
+    const customDate = document.getElementById('packageCustomDate').value;
+    const statusFilter = document.getElementById('packageStatusFilter').value;
+    
+
+    const customDateField = document.getElementById('packageCustomDateField');
+    if (dateFilter === 'custom') {
+        customDateField.style.display = 'block';
+        if (!customDate) {
+            return; 
+        }
+    } else {
+        customDateField.style.display = 'none';
+    }
+    
+
+    updatePackageFilterDisplay(dateFilter, customDate, statusFilter);
+    
+
+    loadPackageAnalytics(dateFilter, customDate, statusFilter);
+}
+
+function updatePackageFilterDisplay(dateFilter, customDate, statusFilter) {
+    const filterDisplay = document.getElementById('packageFilterDisplay');
+    const statusDisplay = document.getElementById('packageStatusDisplay');
+    const currentFilter = document.getElementById('packageCurrentFilter');
+    
+    let displayText = 'All Time';
+    let statusText = 'All Orders';
+    
+
+    switch (dateFilter) {
+        case 'today': displayText = 'Today'; break;
+        case 'yesterday': displayText = 'Yesterday'; break;
+        case 'last7days': displayText = 'Last 7 Days'; break;
+        case 'last14days': displayText = 'Last 14 Days'; break;
+        case 'last28days': displayText = 'Last 28 Days'; break;
+        case 'last30days': displayText = 'Last 30 Days'; break;
+        case 'thisweek': displayText = 'This Week'; break;
+        case 'thismonth': displayText = 'This Month'; break;
+        case 'lastmonth': displayText = 'Last Month'; break;
+        case 'custom':
+            if (customDate) {
+                const date = new Date(customDate);
+                displayText = `${date.toLocaleDateString()}`;
+            }
+            break;
+    }
+    
+
+    switch (statusFilter) {
+        case 'delivered': statusText = 'Delivered Orders Only'; break;
+        case 'pending': statusText = 'Pending Orders Only'; break;
+        case 'processing': statusText = 'Processing Orders Only'; break;
+        case 'cancelled': statusText = 'Cancelled Orders Only'; break;
+        default: statusText = 'All Orders'; break;
+    }
+    
+    filterDisplay.textContent = displayText;
+    statusDisplay.textContent = statusText;
+    
+  
+    if (dateFilter !== 'all' || statusFilter !== 'all') {
+        currentFilter.style.display = 'block';
+    } else {
+        currentFilter.style.display = 'none';
+    }
+}
+
+async function loadPackageAnalytics() {
+    const loading = document.getElementById('packageStatsLoading');
+    const grid = document.getElementById('packageStatsGrid');
+    const noData = document.getElementById('packageStatsNoData');
+    
+    loading.style.display = 'block';
+    grid.style.display = 'none';
+    noData.style.display = 'none';
+    
+    try {
+        const response = await fetch('http://localhost:6500/api/admin/stats', {
+              headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.data && data.data.packageBreakdown) {
+            await displayPackageAnalytics(data.data.packageBreakdown);
+            grid.style.display = 'grid';
+        } else {
+            noData.style.display = 'block';
+        }
+        
+    } catch (error) {
+        console.error('Error loading package analytics:', error);
+        noData.style.display = 'block';
+    } finally {
+        loading.style.display = 'none';
+    }
+}
+
+
+async function displayPackageAnalytics(packageBreakdown) {
+    const grid = document.getElementById('packageStatsGrid');
+    grid.innerHTML = '';
+    
+    if (!packageBreakdown || packageBreakdown.length === 0) {
+        return;
+    }
+    
+ 
+    for (const pkg of packageBreakdown) {
+        const packageCard = await createPackageCard(pkg);
+        grid.appendChild(packageCard);
+    }
+}
+
+ async function createPackageCard(packageData, statusFilter) {
+            const packageName = packageData._id;
+            
+          
+            const { totalOrders, revenue } = await getPackageRevenue(packageName);
+            
+            const card = document.createElement('div');
+            card.className = 'stat-card';
+            card.style.background = 'linear-gradient(135deg, #f8fafc, #ffffff)';
+            card.style.border = '2px solid #e2e8f0';
+            card.style.position = 'relative';
+         
+            const packageColor = getPackageColor(packageName);
+            card.style.borderTopColor = packageColor;
+            
+            card.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                    <h3 style="margin: 0; color: #073829; font-size: 1.1rem; text-transform: uppercase;">
+                        ${packageName}
+                    </h3>
+                    <i class="fas fa-box" style="font-size: 1.5rem; color: ${packageColor}; opacity: 0.7;"></i>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="text-align: center; padding: 10px; background: #f8fafc; border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #073829; margin-bottom: 5px;">
+                            ${totalOrders}
+                        </div>
+                        <div style="font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Delivered Orders
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 10px; background: #f0fff4; border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #169946; margin-bottom: 5px;">
+                            ₦${revenue.toLocaleString()}
+                        </div>
+                        <div style="font-size: 0.8rem; color: #718096; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Revenue
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: #718096;">Average Order Value</span>
+                        <span style="font-weight: 600; color: #073829;">₦${totalOrders > 0 ? Math.round(revenue / totalOrders).toLocaleString() : '0'}</span>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+
+
+
+function getPackageColor(packageName) {
+    const colors = {
+        'basic': '#48bb78',
+        'standard': '#4299e1', 
+        'premium': '#ed8936',
+        'deluxe': '#f56565',
+        'vip': '#9f7aea'
+    };
+    
+    return colors[packageName.toLowerCase()] || '#718096';
+}
+
+      
+        async function getPackageRevenue(packageName) {
+            try {
+                const params = new URLSearchParams({
+                    package: packageName
+                });
+                
+               const response = await fetch(`http://localhost:6500/api/admin/package-revenue?${params}`, {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    }
+});
+                const data = await response.json();
+                
+                return {
+                    totalOrders: data.data ? data.data.totalOrders : 0,
+                    revenue: data.data ? data.data.revenue : 0
+                };
+            } catch (error) {
+                console.error('Error loading package revenue:', error);
+                return { totalOrders: 0, revenue: 0 };
+            }
+        }
+
+
+function initializePackageAnalytics() {
+
+    document.getElementById('packageAnalyticsDateFilter').addEventListener('change', function() {
+        const customDateField = document.getElementById('packageCustomDateField');
+        if (this.value === 'custom') {
+            customDateField.style.display = 'block';
+        } else {
+            customDateField.style.display = 'none';
+            setTimeout(() => applyPackageAnalyticsFilter(), 100);
+        }
+    });
+    
+
+    loadPackageAnalytics();
+}
         function initializeChart() {
             const ctx = document.getElementById('packageChart').getContext('2d');
             packageChart = new Chart(ctx, {
@@ -1584,21 +3118,268 @@
             });
         }
 
-        function updatePackageChart(packageData) {
-            if (!packageChart) return;
+       
+
+document.getElementById('statsDateFilter').addEventListener('change', function() {
+    const customDateField = document.getElementById('customDateField');
+    if (this.value === 'custom') {
+        customDateField.style.display = 'block';
+    } else {
+        customDateField.style.display = 'none';
+
+        setTimeout(() => {
+            applyStatsFilter();
+        }, 100);
+    }
+});
+
+
+document.getElementById('statsCustomDate').addEventListener('change', function() {
+    const dateFilter = document.getElementById('statsDateFilter').value;
+    if (dateFilter === 'custom' && this.value) {
+        applyStatsFilter();
+    }
+});
+async function loadStatsWithFilter(dateFilter = 'all', customDate = '') {
+    try {
+        console.log('Loading stats with filter:', { dateFilter, customDate });
+        
+        const token = localStorage.getItem('token'); 
+        if (!token) {
+            throw new Error('No token found in localStorage');
+        }
+
+        const params = new URLSearchParams();
+        if (dateFilter && dateFilter !== 'all') {
+            params.append('dateFilter', dateFilter);
+        }
+        if (customDate && customDate.trim() !== '') {
+            params.append('startDate', customDate);
+        }
+        
+        const url = `http://localhost:6500/api/admin/stats${params.toString() ? '?' + params.toString() : ''}`;
+        console.log('Stats URL:', url);
+
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Stats response:', data);
+        
+        if (data.data) {
+           
+            document.getElementById('totalOrders').textContent = data.data.totalOrders || 0;
             
-            const labels = [];
-            const data = [];
+           
+            const revenue = data.data.totalRevenue || 0;
+            document.getElementById('totalRevenue').textContent = `₦${revenue.toLocaleString()}`;
             
-            packageData.forEach(pkg => {
+           
+            let pendingCount = 0;
+            let processingCount = 0;
+            let deliveredCount = 0;
+            let cancelledCount = 0;
+            
+            if (data.data.statusBreakdown && Array.isArray(data.data.statusBreakdown)) {
+                data.data.statusBreakdown.forEach(status => {
+                    switch (status._id) {
+                        case 'pending':
+                            pendingCount = status.count;
+                            break;
+                        case 'processing':
+                            processingCount = status.count;
+                            break;
+                        case 'delivered':
+                            deliveredCount = status.count;
+                            break;
+                        case 'cancelled':
+                            cancelledCount = status.count;
+                            break;
+                    }
+                });
+            }
+            
+        
+            document.getElementById('pendingOrders').textContent = pendingCount;
+            document.getElementById('deliveredOrders').textContent = deliveredCount;
+            
+        
+            if (data.data.packageBreakdown && Array.isArray(data.data.packageBreakdown)) {
+                updatePackageChart(data.data.packageBreakdown);
+            } else {
+                updatePackageChart([]);
+            }
+            
+            console.log('Stats updated successfully');
+        } else {
+            console.error('Invalid response format:', data);
+            throw new Error('Invalid response format');
+        }
+    } catch (error) {
+        console.error('Error loading filtered stats:', error);
+        
+
+        document.getElementById('totalOrders').textContent = 'Error';
+        document.getElementById('totalRevenue').textContent = '₦Error';
+        document.getElementById('pendingOrders').textContent = 'Error';
+        document.getElementById('deliveredOrders').textContent = 'Error';
+        
+
+        alert(`Error loading statistics: ${error.message}`);
+    }
+}
+
+function applyStatsFilter() {
+    const dateFilter = document.getElementById('statsDateFilter').value;
+    const customDate = document.getElementById('statsCustomDate').value;
+    
+    console.log('Applying stats filter:', { dateFilter, customDate });
+    
+  
+    if (dateFilter === 'custom') {
+        // if (!customDate) {
+        //     alert('Please select a date for custom filter');
+        //     return;
+        // }
+    }
+
+    updateFilterDisplay(dateFilter, customDate);
+
+    loadStatsWithFilter(dateFilter, customDate);
+}
+
+
+function updateFilterDisplay(dateFilter, customDate) {
+    const filterDisplay = document.getElementById('filterDisplay');
+    const currentFilter = document.getElementById('currentFilter');
+    
+    let displayText = 'All Time';
+    
+    switch (dateFilter) {
+        case 'today':
+            displayText = 'Today';
+            break;
+        case 'yesterday':
+            displayText = 'Yesterday';
+            break;
+        case 'last7days':
+            displayText = 'Last 7 Days';
+            break;
+        case 'last14days':
+            displayText = 'Last 14 Days';
+            break;
+        case 'last28days':
+            displayText = 'Last 28 Days';
+            break;
+        case 'last30days':
+            displayText = 'Last 30 Days';
+            break;
+        case 'thisweek':
+            displayText = 'This Week';
+            break;
+        case 'thismonth':
+            displayText = 'This Month';
+            break;
+        case 'lastmonth':
+            displayText = 'Last Month';
+            break;
+        case 'custom':
+            if (customDate) {
+                const date = new Date(customDate);
+                displayText = `${date.toLocaleDateString()} (Single Day)`;
+            } else {
+                displayText = 'Custom Date (Invalid)';
+            }
+            break;
+        case 'all':
+        default:
+            displayText = 'All Time';
+            break;
+    }
+    
+    filterDisplay.textContent = displayText;
+    
+    
+    if (dateFilter && dateFilter !== 'all') {
+        currentFilter.style.display = 'block';
+    } else {
+        currentFilter.style.display = 'none';
+    }
+}
+
+
+function resetStatsFilter() {
+    document.getElementById('statsDateFilter').value = 'all';
+    document.getElementById('statsCustomDate').value = '';
+    document.getElementById('customDateField').style.display = 'none';
+    document.getElementById('currentFilter').style.display = 'none';
+    
+
+    applyStatsFilter();
+}
+
+
+async function loadStats() {
+    const dateFilter = document.getElementById('statsDateFilter').value || 'all';
+    const customDate = document.getElementById('statsCustomDate').value || '';
+    
+    console.log('loadStats called with:', { dateFilter, customDate });
+    
+    await loadStatsWithFilter(dateFilter, customDate);
+}
+
+function updatePackageChart(packageData) {
+    if (!packageChart) {
+        console.warn('Package chart not initialized');
+        return;
+    }
+    
+    console.log('Updating package chart with data:', packageData);
+    
+    const labels = [];
+    const data = [];
+    const colors = [
+        '#667eea',
+        '#764ba2', 
+        '#f093fb',
+        '#f5576c',
+        '#4facfe',
+        '#43e97b',
+        '#fa709a',
+        '#fee140'
+    ];
+    
+    if (packageData && Array.isArray(packageData) && packageData.length > 0) {
+        packageData.forEach(pkg => {
+            if (pkg._id && pkg.count) {
                 labels.push(pkg._id.toUpperCase());
                 data.push(pkg.count);
-            });
-            
-            packageChart.data.labels = labels;
-            packageChart.data.datasets[0].data = data;
-            packageChart.update();
-        }
+            }
+        });
+    }
+  
+    if (labels.length === 0) {
+        labels.push('No Data');
+        data.push(1);
+        packageChart.data.datasets[0].backgroundColor = ['#e2e8f0'];
+    } else {
+        packageChart.data.datasets[0].backgroundColor = colors.slice(0, labels.length);
+    }
+    
+    packageChart.data.labels = labels;
+    packageChart.data.datasets[0].data = data;
+    packageChart.update('none'); 
+    
+    console.log('Package chart updated successfully');
+}
 
         async function loadNewsletterTemplates() {
             try {
@@ -1846,7 +3627,12 @@
 
         async function exportToExcel() {
             try {
-                const response = await fetch('http://localhost:6500/api/admin/export/excel');
+                const response = await fetch('http://localhost:6500/api/admin/export/excel', {
+                    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+}
+                });
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -1862,7 +3648,12 @@
 
         async function exportToPDF() {
             try {
-                const response = await fetch('http://localhost:6500/api/admin/export/pdf');
+                const response = await fetch('http://localhost:6500/api/admin/export/pdf', {
+                    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+}
+                });
                 const blob = await response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -1914,10 +3705,12 @@
             }
             
             try {
+                const token = localStorage.getItem('token');
                 const response = await fetch(`http://localhost:6500/api/admin/orders/${currentPackagePriceOrderId}/package-price`, {
                     method: 'PUT',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({ 
                         package: newPackage, 
@@ -1973,7 +3766,13 @@
 
         async function loadProcessingSteps(orderId) {
             try {
-                const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}/processing-steps`);
+               const token = localStorage.getItem('token');
+        const response = await fetch(`http://localhost:6500/api/admin/orders/${orderId}/processing-steps`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        });
                 const data = await response.json();
                 
                 if (data.data) {
@@ -2041,10 +3840,12 @@
             const codeToAdd = selectedProcessingCode;
             
             try {
+                const token = localStorage.getItem('token');
                 const response = await fetch(`http://localhost:6500/api/admin/orders/${currentProcessingOrderId}/processing-step`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
                     body: JSON.stringify({
                         code: codeToAdd
@@ -2077,29 +3878,33 @@
             startAutoRefresh();
         }
 
-        window.onclick = function(event) {
-            const orderModal = document.getElementById('orderModal');
-            const statusModal = document.getElementById('statusModal');
-            const previewModal = document.getElementById('previewModal');
-            const packagePriceModal = document.getElementById('packagePriceModal');
-            const processingStepsModal = document.getElementById('processingStepsModal');
-            
-            if (event.target === orderModal) {
-                closeModal();
-            }
-            if (event.target === statusModal) {
-                closeStatusModal();
-            }
-            if (event.target === previewModal) {
-                closePreviewModal();
-            }
-            if (event.target === packagePriceModal) {
-                closePackagePriceModal();
-            }
-            if (event.target === processingStepsModal) {
-                closeProcessingStepsModal();
-            }
-        }
+window.onclick = function(event) {
+    const orderModal = document.getElementById('orderModal');
+    const statusModal = document.getElementById('statusModal');
+    const previewModal = document.getElementById('previewModal');
+    const packagePriceModal = document.getElementById('packagePriceModal');
+    const processingStepsModal = document.getElementById('processingStepsModal');
+    const createUserModal = document.getElementById('createUserModal');
+
+    if (event.target === orderModal) {
+        closeModal();
+    }
+    if (event.target === statusModal) {
+        closeStatusModal();
+    }
+    if (event.target === previewModal) {
+        closePreviewModal();
+    }
+    if (event.target === packagePriceModal) {
+        closePackagePriceModal();
+    }
+    if (event.target === processingStepsModal) {
+        closeProcessingStepsModal();
+    }
+    if (event.target === createUserModal) {
+        closeCreateUserModal();
+    }
+}
 
         document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 500));
         document.getElementById('statusFilter').addEventListener('change', applyFilters);

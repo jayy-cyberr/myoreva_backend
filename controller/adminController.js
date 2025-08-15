@@ -60,7 +60,7 @@ const sendEmailNotification = async (order, newStatus) => {
     if (newStatus === 'delivered') {
       emailOptions = {
         from: `"MyOreva Delivery Team" <${process.env.APP_USER}>`,
-        to: process.env.ADMIN_EMAIL, // Send to admin only
+        to: process.env.ADMIN_EMAIL, 
         subject: `Order Delivered - ${order.fullName}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
@@ -190,29 +190,131 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-
 const getOrderStats = async (req, res) => {
   try {
-    const totalOrders = await Order.countDocuments();
+    const { dateFilter, startDate, endDate } = req.query;
     
-  const revenueResult = await Order.aggregate([
-  { $match: { status: 'delivered' } }, 
-  { $group: { _id: null, total: { $sum: "$price" } } }
-]);
+    
+    let dateQuery = {};
+    const now = new Date();
+    
+    if (dateFilter && dateFilter !== 'all') {
+      switch (dateFilter) {
+        case 'today':
+          const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+          const todayEnd = new Date(todayStart.getTime() + 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: todayStart, $lt: todayEnd } };
+          break;
+          
+        case 'yesterday':
+          const yesterdayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+          const yesterdayEnd = new Date(yesterdayStart.getTime() + 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: yesterdayStart, $lt: yesterdayEnd } };
+          break;
+          
+        case 'last7days':
+          const last7Start = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: last7Start } };
+          break;
+          
+        case 'last14days':
+          const last14Start = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: last14Start } };
+          break;
+          
+        case 'last28days':
+          const last28Start = new Date(now.getTime() - 28 * 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: last28Start } };
+          break;
+          
+        case 'last30days':
+          const last30Start = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+          dateQuery = { createdAt: { $gte: last30Start } };
+          break;
+          
+        case 'thisweek':
+          const weekStart = new Date(now);
+          weekStart.setDate(now.getDate() - now.getDay()); 
+          weekStart.setHours(0, 0, 0, 0);
+          dateQuery = { createdAt: { $gte: weekStart } };
+          break;
+          
+        case 'thismonth':
+          const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+          dateQuery = { createdAt: { $gte: monthStart } };
+          break;
+          
+        case 'lastmonth':
+          const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+          const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 1);
+          dateQuery = { createdAt: { $gte: lastMonthStart, $lt: lastMonthEnd } };
+          break;
+          
+        case 'custom':
+          if (startDate) {
+            const start = new Date(startDate);
+            const end = new Date(startDate);
+            start.setHours(0, 0, 0, 0);    
+            end.setHours(23, 59, 59, 999); 
+            dateQuery = { createdAt: { $gte: start, $lte: end } };
+          }
+          break;
+          
+        default:
+          
+          dateQuery = {};
+      }
+    } else if (startDate) {
+      
+      const start = new Date(startDate);
+      const end = new Date(startDate);
+      start.setHours(0, 0, 0, 0);
+      end.setHours(23, 59, 59, 999);
+      dateQuery = { createdAt: { $gte: start, $lte: end } };
+    }
+    
+    console.log('Date filter applied:', dateFilter);
+    console.log('Date query:', dateQuery);
+    
+    
+    const totalOrders = await Order.countDocuments(dateQuery);
+    
+    
+    const revenueQuery = { 
+      status: 'delivered',
+      ...dateQuery 
+    };
+    
+    const revenueResult = await Order.aggregate([
+      { $match: revenueQuery },
+      { $group: { _id: null, total: { $sum: "$price" } } }
+    ]);
     const totalRevenue = revenueResult.length > 0 ? revenueResult[0].total : 0;
     
+    
     const statusStats = await Order.aggregate([
+      { $match: dateQuery },
       { $group: { _id: "$status", count: { $sum: 1 } } }
     ]);
     
+    
     const packageStats = await Order.aggregate([
+      { $match: dateQuery },
       { $group: { _id: "$package", count: { $sum: 1 } } }
     ]);
+    
     
     const lastWeek = new Date();
     lastWeek.setDate(lastWeek.getDate() - 7);
     const recentOrders = await Order.countDocuments({
       createdAt: { $gte: lastWeek }
+    });
+
+    console.log('Stats result:', {
+      totalOrders,
+      totalRevenue, 
+      statusStats,
+      packageStats
     });
 
     res.status(200).json({
@@ -222,7 +324,14 @@ const getOrderStats = async (req, res) => {
         totalRevenue,
         recentOrders,
         statusBreakdown: statusStats,
-        packageBreakdown: packageStats
+        packageBreakdown: packageStats,
+        dateRange: dateFilter || 'all',
+        appliedFilter: {
+          dateFilter,
+          startDate,
+          endDate,
+          query: dateQuery
+        }
       }
     });
   } catch (error) {
@@ -324,7 +433,7 @@ const addProcessingStep = async (req, res) => {
     const { id } = req.params;
     const { code } = req.body;
 
-    // Define the processing codes and their descriptions
+    
     const processingCodes = {
       'N.A': 'Not Available',
       'N.P': 'Not Picking',
@@ -348,17 +457,17 @@ const addProcessingStep = async (req, res) => {
       });
     }
 
-    // Only allow adding steps if status is pending
+    
     if (order.status !== 'pending') {
       return res.status(400).json({
         message: "Processing steps can only be added to pending orders"
       });
     }
 
-    // Get the next step number
+    
     const nextStepNumber = order.processingSteps.length + 1;
 
-    // Add the new processing step
+    
     const newStep = {
       step: nextStepNumber,
       code: code,
@@ -382,7 +491,7 @@ const addProcessingStep = async (req, res) => {
   }
 };
 
-// Add this function to get processing steps for an order
+
 const getProcessingSteps = async (req, res) => {
   try {
     const { id } = req.params;
@@ -412,6 +521,59 @@ const getProcessingSteps = async (req, res) => {
 };
 
 
+const getPackageRevenue = async (req, res) => {
+  try {
+    const { package: packageName } = req.query;
+    
+    if (!packageName) {
+      return res.status(400).json({
+        message: "Package name is required"
+      });
+    }
+    
+    
+    let query = { 
+      package: packageName,
+      status: 'delivered' 
+    };
+    
+    console.log('Package revenue query:', query);
+    
+    
+    const revenueResult = await Order.aggregate([
+      { $match: query },
+      { 
+        $group: { 
+          _id: null, 
+          revenue: { $sum: "$price" },
+          totalOrders: { $sum: 1 },
+          averageOrderValue: { $avg: "$price" }
+        } 
+      }
+    ]);
+    
+    const revenue = revenueResult.length > 0 ? revenueResult[0].revenue : 0;
+    const totalOrders = revenueResult.length > 0 ? revenueResult[0].totalOrders : 0;
+    const averageOrderValue = revenueResult.length > 0 ? revenueResult[0].averageOrderValue : 0;
+    
+    res.status(200).json({
+      message: "Package revenue retrieved successfully",
+      data: {
+        package: packageName,
+        revenue,
+        totalOrders,
+        averageOrderValue: Math.round(averageOrderValue || 0)
+      }
+    });
+    
+  } catch (error) {
+    console.error("Error retrieving package revenue:", error);
+    res.status(500).json({
+      message: "Failed to retrieve package revenue",
+      error: error.message
+    });
+  }
+};
 const deleteOrder = async (req, res) => {
   try {
     const { id } = req.params;
@@ -469,7 +631,7 @@ const updateOrderPackageAndPrice = async (req, res) => {
       });
     }
 
-    // Send SMS notification for package and price update
+    
     const smsResult = await sendSMSNotification(updatedOrder, 'packageAndPrice');
 
     res.status(200).json({
@@ -487,6 +649,7 @@ const updateOrderPackageAndPrice = async (req, res) => {
     });
   }
 };
+
 
 const exportToExcel = async (req, res) => {
   try {
@@ -591,5 +754,6 @@ module.exports = {
   exportToPDF,
    addProcessingStep,
   getProcessingSteps,
-  updateOrderPackageAndPrice
+  updateOrderPackageAndPrice,
+  getPackageRevenue 
 };

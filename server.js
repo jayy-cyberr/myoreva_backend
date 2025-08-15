@@ -4,6 +4,7 @@ const database = require("./config/connectToDB");
 const formRoute = require("./route/formRoute");
 const subscribeRoute = require("./route/subscribeRoute");
 const adminRoute = require("./route/adminRoute");
+const authRoute = require("./route/authRoute");
 const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -40,6 +41,7 @@ app.get("/admin", (req, res) => {
 
 app.use("/api/form", formRoute);
 app.use("/api/mail", subscribeRoute);
+app.use("/api/auth", authRoute);
 app.use("/api/admin", adminRoute);
 
 
