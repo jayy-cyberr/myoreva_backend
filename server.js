@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 
 
 app.use(cors({
-    origin: ["http://127.0.0.1:5500", "http://127.0.0.1:5500/login.html"],
+    origin: ["http://127.0.0.1:5500", "http://127.0.0.1:5500/login.html", "http://localhost:5174"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
@@ -47,7 +47,7 @@ app.use("/api/admin", adminRoute);
 
 app.use((err, req, res, next) => {
     console.error("Server error:", err);
-    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500", " http://127.0.0.1:5500/login.html", "");
+    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5500", " http://127.0.0.1:5500/login.html", "http://localhost:5174");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");

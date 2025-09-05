@@ -37,7 +37,7 @@ const orderSchema = new mongoose.Schema({
   availability: {
     type: String,
     enum: ["yes", "no"],
-    required: true
+    // required: true
   },
   price: {
     type: Number,

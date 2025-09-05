@@ -52,12 +52,17 @@ const addForm = async (req, res) => {
   
     const smsBody = `Hi ${fullName}, your order for the "${packageType}" package has been received. Address: ${address}. Your order will be processed shortly for delivery. Thank you!`;
 
-    await client.messages.create({
-      body: smsBody,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: sendTo.startsWith("+") ? sendTo : `+${sendTo}`,
-    });
 
+// SMS (optional, won't block order)
+try {
+  await client.messages.create({
+    body: smsBody,
+    from: process.env.TWILIO_PHONE_NUMBER,
+    to: sendTo.startsWith("+") ? sendTo : `+${sendTo}`,
+  });
+} catch (smsError) {
+  console.error("⚠️ Failed to send SMS:", smsError.message);
+}
 
     const adminMailOptions = {
   from: `"Order Notification" <${process.env.APP_USER}>`,
@@ -66,7 +71,7 @@ const addForm = async (req, res) => {
   html: `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
       <div style="background-color: #4a90e2; color: white; padding: 20px; border-radius: 10px 10px 0 0;">
-        <h2 style="margin: 0; font-size: 3rem">📦 New Order Received</h2>
+        <h2 style="margin: 0; font-size: 1.6rem">📦 New Order Received</h2>
         <p style="margin: 5px 0 0;">Customer: <strong>${fullName}</strong></p>
       </div>
 
@@ -121,7 +126,7 @@ const addForm = async (req, res) => {
       data: newOrder,
     });
   } catch (error) {
-    console.error("Error in addForm:", error);
+    console.error("❌ Error in addForm:", error);
     res.status(500).json({
       message: "An error occurred",
       status: "Failed",
