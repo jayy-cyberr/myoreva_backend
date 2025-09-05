@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 
 
 app.use(cors({
-    origin: ["https://myoreva.vercel.app", "http://127.0.0.1:5500/login.html", "http://localhost:5174"],
+    origin: ["https://myoreva.vercel.app", "https://adminoreva.netlify.app/login.html", "https://adminoreva.netlify.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
