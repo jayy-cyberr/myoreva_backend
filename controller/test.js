@@ -1,31 +1,3 @@
-const mongoose = require("mongoose");
-const orderSchema = require("../model/formModel");
-const client = require("../config/twillioConfig");
-const nodemailer = require("nodemailer");
-require("dotenv").config();
-
-
-const Order = mongoose.model("Order", orderSchema);
-
-
-const transporter = nodemailer.createTransport({
-  host: process.env.APP_HOST,
-  port: process.env.APP_PORT,
-  secure: false,
-  auth: {
-    user: process.env.APP_USER,
-    pass: process.env.APP_PASS,
-  },
-});
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("❌ SMTP connection failed:", error);
-  } else {
-    console.log("✅ SMTP server is ready to send emails");
-  }
-});
-
-
 const addForm = async (req, res) => {
   try {
     const formData = req.body;
@@ -79,9 +51,4 @@ const addForm = async (req, res) => {
     console.error("❌ Error in addForm:", error);
     res.status(500).json({ message: "An error occurred", status: "Failed", error: error.message });
   }
-};
-
-
-module.exports = {
-  addForm,
 };
