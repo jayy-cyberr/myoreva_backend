@@ -11,7 +11,7 @@ const Order = mongoose.model("Order", orderSchema);
 const transporter = nodemailer.createTransport({
   host: process.env.APP_HOST,
   port: process.env.APP_PORT,
-  secure: true,
+  secure: false,
   auth: {
     user: process.env.APP_USER,
     pass: process.env.APP_PASS,
