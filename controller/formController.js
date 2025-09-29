@@ -11,12 +11,20 @@ const Order = mongoose.model("Order", orderSchema);
 const transporter = nodemailer.createTransport({
   host: process.env.APP_HOST,
   port: process.env.APP_PORT,
-  secure: false,
+  secure: true,
   auth: {
     user: process.env.APP_USER,
     pass: process.env.APP_PASS,
   },
 });
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ SMTP connection failed:", error);
+  } else {
+    console.log("✅ SMTP server is ready to send emails");
+  }
+});
+
 
 const addForm = async (req, res) => {
   try {
