@@ -126,7 +126,11 @@ try {
 };
 
 
-    await transporter.sendMail(adminMailOptions);
+ try {
+  await transporter.sendMail(adminMailOptions);
+} catch (mailError) {
+  console.error("⚠️ Failed to send email:", mailError.message);
+}
 
     res.status(201).json({
       message: "Successfully added, SMS and Email sent",
